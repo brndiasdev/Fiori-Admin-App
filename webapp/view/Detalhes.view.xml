@@ -1,0 +1,158 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.uxap"
+  xmlns:layout="sap.ui.layout"
+  xmlns:m="sap.m" controllerName="br.com.gestao.fioriappreport303.controller.Detalhes" height="100%">
+  <ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" showEditHeaderButton="true" editHeaderButtonPress="handleEditBtnPress" upperCaseAnchorBar="false">
+    <headerTitle>
+      <ObjectPageDynamicHeaderTitle id="DynamicHeader" class="DynamicHeader">
+        <breadcrumbs>
+          <m:Breadcrumbs id="breadcrumbs1" class="breadcrumbs1" currentLocationText="{Name} - {Productid}">
+            <m:Link id="bcLink1" text="Produtos" class="bcLink1" press="history.back()"/>
+          </m:Breadcrumbs>
+        </breadcrumbs>
+
+
+        <expandedHeading>
+          <m:HBox id="hBox1">
+            <m:Title id="title0" text="{Name}" wrapping="true"/>
+            <m:ObjectMarker id="_IDGenObjectMarker1" type="Favorite" class="sapUiTinyMarginBegin"/>
+          </m:HBox>
+        </expandedHeading>
+
+        <snappedHeading>
+          <m:FlexBox id="flexsnapped" fitContainer="true" class="flexsnapped">
+            <m:items>
+              <sap.ui.core:Icon xmlns:sap.ui.core="sap.ui.core" src="sap-icon://product" size="3em" class="sapUiSmallMarginBeginEnd icon1" id="icon1"/>
+              <m:Title id="_IDGenTitle2" text="{Name}" class="titlesnapped" wrapping="true"/>
+            </m:items>
+          </m:FlexBox>
+        </snappedHeading>
+
+        <expandedContent>
+          <m:Text id="_IDGenText1" text="{Description}"/>
+        </expandedContent>
+
+        <actions>
+          <m:Button id="actionButton" text="{i18n>buttonBack}" type="Emphasized" press="history.back()" icon="sap-icon://nav-back"/>
+        </actions>
+      </ObjectPageDynamicHeaderTitle>
+    </headerTitle>
+
+    <headerContent>
+
+      <m:HeaderContainer id="headerContainer" class="headerContainer" scrollStep="200" showDividers="false">
+        <m:HBox id="hcHBox0">
+          <sap.ui.core:Icon xmlns:sap.ui.core="sap.ui.core" src="sap-icon://product" size="3.5em" id="icon2" class="icon2"/>
+          <m:VBox id="hcVBox0" class="sapSmallMarginEnd">
+            <m:Title id="hcTitle0" class="hcTitle0 sapUiSmallMarginEnd" text="{Productid}"/>
+            <m:Link id="hcLink0" class="hcLink0 sapUiSmallMarginEnd" text="{i18n>headerCategory}"/>
+            <m:HBox id="hcHBox1" renderType="Bare">
+              <m:Label id="hcLabel0" text="{i18n>headerGrupo}" class="hcLabel0"/>
+              <m:Text id="hcText0" class="hcText0 sapUiLargeMarginEnd" text=" {Category}"/>
+            </m:HBox>
+          </m:VBox>
+        </m:HBox>
+
+        <m:VBox id="hcVBox1">
+          <m:Title id="hcTitle1" text="{i18n>headerDescription}" class="hcTitle1 sapUiLargeMarginEnd"/>
+          <m:Text id="hcText1" class="hcText1 sapUiLargeMarginEnd" text="{Description}" width="320px"/>
+        </m:VBox>
+
+        <m:VBox id="hcVBox2">
+          <m:Title id="hcTitle2" class="hcTitle2" text="{i18n>headerStatus}"/>
+          <m:ObjectStatus text="{path:'Status', formatter:'.statusProduto' }" id="hcStatus0" icon="{path:'Status', formatter:'.iconeProduto'}" inverted="true" state="{path:'Status', formatter:'.stateProduto'}"/>
+        </m:VBox>
+
+        <m:VBox id="hcVBox3">
+          <m:Title id="hcTitle3" class="hcTitle3 sapUiLargeMarginBegin" text="{i18n>headerPrice}"/>
+          <m:ObjectNumber number="{ parts: [{path:'Price'}, {path:'Currencycode'}], type:'sap.ui.model.type.Currency', formatOptions: {showMeasure: false}}" unit="{Currencycode}" id="hcPrice" state="Success" class="hcPrice sapUiLargeMarginBegin"/>
+        </m:VBox>
+
+        <m:VBox id="hcVBox4" class="hcVBox4 sapUiLargeMarginBegin">
+          <m:HBox id="VHBox0" class="VHBox0">
+            <m:Label id="hcLabel1" text="{i18n>headerCreatedBy}" class="hcLabel1"/>
+            <m:Link id="hcLink1" text="{Usercreate}" class="hcLink1 sapUiMediumMarginBegin"/>
+          </m:HBox>
+          <m:HBox id="VHBox1" class="VHBox1">
+            <m:Label id="hcLabel2" text="{i18n>headerCreatedOn}" class="hcLabel2"/>
+            <m:Link id="hcLink2" text="{path:'Createdat', formatter:'.date' }" class="hcLink2 sapUiMediumMarginBegin"/>
+          </m:HBox>
+          <m:HBox id="VHBox2" class="VHBox2">
+            <m:Label id="hcLabel3" text="{i18n>headerChangedBy}" class="hcLabel3"/>
+            <m:Link id="hcLink3" text="{Userupdate}" class="hcLink3 sapUiSmallMarginBegin"/>
+          </m:HBox>
+          <m:HBox id="VHBox3" class="VHBox3">
+            <m:Label id="hcLabel4" text="{i18n>headerChangedOn}" class="hcLabel4"/>
+            <m:Link id="hcLink4" text="{path:'Changedat', formatter:'.date' }" class="hcLink4 sapUiSmallMarginBegin"/>
+          </m:HBox>
+        </m:VBox>
+      </m:HeaderContainer>
+
+    </headerContent>
+    <!-- FIM DO HEADER -->
+
+    <!-- SECTIONS -->
+    <sections>
+      <ObjectPageSection titleUppercase="false" id="sectionsTitle0" title="{i18n>sectionTitle}">
+        <subSections>
+          <ObjectPageSubSection id="sectionsTitle1" title="">
+          
+
+              <sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" backgroundDesign="Transparent"
+                xmlns:sap.ui.core="sap.ui.core" id="form0" editable="false" layout="ColumnLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsM="2" columnsL="3" columnsXL="4" singleContainerFullSize="false">
+
+                <sap.ui.layout.form:content >
+                  <m:Label text="{i18n>sectionCategory}" id="sectionLabel0"/>
+                  <m:Text id="sectionText0" text="{to_cat/Description}" class="sapMObjectNumberMedium" />
+
+                  <m:Label text="{i18n>sectionSupplier}" id="sectionLabel1"/>
+                  <m:Text id="sectionText1" text="{Supplierid} {Suppliername}" />
+                </sap.ui.layout.form:content>
+
+              </sap.ui.layout.form:SimpleForm>
+            
+          </ObjectPageSubSection>
+        </subSections>
+      </ObjectPageSection>
+
+      <ObjectPageSection titleUppercase="false" id="objpage0" title="{i18n>sectionTitle1}">
+        <subSections>
+          <ObjectPageSubSection id="employmentSectionSS1" titleUppercase="false">
+            <blocks>
+              <sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" backgroundDesign="Transparent"
+                xmlns:sap.ui.core="sap.ui.core" id="form1" editable="false" layout="ColumnLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsM="2" columnsL="3" columnsXL="4" singleContainerFullSize="false">
+
+                <sap.ui.layout.form:content >
+                  <m:Label text="{i18n>sectionMeasureUnit}" id="sectionLabel2"/>
+                  <m:Text id="sectionText2" text="{Measureunit}" class="sapMObjectNumberMedium" />
+
+                  <m:Label text="{i18n>sectionWeightMeasure}" id="sectionLabel3"/>
+                  <m:Text id="sectionText3" text="{path: 'Weightmeasure', formatter: '.floatNumber'} {path: 'Weightunit'}" />
+
+                  <m:Label text="{i18n>sectionWidth}" id="sectionLabel5"/>
+                  <m:Text id="sectionText5" text="{path: 'Width', formatter:'.floatNumber'}" />
+
+                  <m:Label text="{i18n>sectionDepth}" id="sectionLabel6"/>
+                  <m:Text id="sectionText6" text="{path: 'Depth', formatter:'.floatNumber'}"/>
+
+                  <m:Label text="{i18n>sectionHeigth}" id="sectionLabel7"/>
+                  <m:Text id="sectionText7" text="{path: 'Heigth', formatter:'.floatNumber'}" />
+
+                  <m:Label text="{i18n>sectionDimUnit}" id="sectionLabel8"/>
+                  <m:Text id="sectionText8" text="{Dimunit}" />
+                </sap.ui.layout.form:content>
+
+              </sap.ui.layout.form:SimpleForm>
+            </blocks>
+          </ObjectPageSubSection>
+
+
+
+        </subSections>
+      </ObjectPageSection>
+    </sections>
+    <footer>
+
+    </footer>
+  </ObjectPageLayout>
+</mvc:View>
