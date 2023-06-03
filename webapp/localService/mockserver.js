@@ -9,7 +9,7 @@ sap.ui.define(
     "use strict";
 
     var oMockServer,
-      _sAppPath = "br/com/gestao/fioriappreport303/",
+      _sAppPath = "br/com/gestao/fioriappadmin303/",
       _sJsonFilesPath = _sAppPath + "localService/mockdata";
 
     var oMockServerInterface = {

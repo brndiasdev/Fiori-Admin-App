@@ -2,7 +2,7 @@
 
 specVersion: "2.6"
 metadata:
-  name: br.com.gestao.fioriappreport303
+  name: br.com.gestao.fioriappadmin303
 type: application
 framework:
   name: SAPUI5
@@ -32,7 +32,7 @@ server:
         backend:
           - path: /sap
             url: http://vm51.4hub.cloud:55100
-            client: '100'
+            client: "100"
             destination: S4_Hana_Novo
     - name: sap-fe-mockserver
       beforeMiddleware: csp
@@ -47,5 +47,5 @@ server:
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
-        component: br.com.gestao.fioriappreport303
+        component: br.com.gestao.fioriappadmin303
         ui5Theme: sap_horizon
