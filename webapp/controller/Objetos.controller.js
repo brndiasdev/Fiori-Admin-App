@@ -23,13 +23,11 @@ sap.ui.define(
         btnText.setText(sValorText);
       },
       removeForm: function (event) {
-        debugger;
         //remove o formulário dentro do Panel 2
         var removeForm = this.getView().byId("panel2");
         removeForm.destroyContent();
       },
       addForm: function (event) {
-        debugger;
         // Cria objetos de formulátio - Label e Input
         var addForm = this.getView().byId("panel2");
         var formObjects = [];

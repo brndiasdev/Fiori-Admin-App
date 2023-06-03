@@ -49,9 +49,9 @@
                         <!-- PRICE -->
                         <ObjectNumber xmlns="sap.m" number="{ parts: [{path:'Price'}, {path:'Currencycode'}], type:'sap.ui.model.type.Currency', formatOptions: {showMeasure: false}}" unit="{Currencycode}" id="number0" state="Success"/>
                         <!-- STATUS -->
-                        <ObjectStatus xmlns="sap.m" text="{path:'Status', formatter:'.statusProduto' }" id="status0" icon="{path:'Status', formatter:'.iconeProduto'}" inverted="true" state="{path:'Status', formatter:'.stateProduto'}"/>
+                        <ObjectStatus xmlns="sap.m" text="{path:'Status', formatter:'.objFormatter.statusProduto' }" id="status0" icon="{path:'Status', formatter:'.objFormatter.iconeProduto'}" inverted="true" state="{path:'Status', formatter:'.objFormatter.stateProduto'}"/>
                         <!-- Date - Formatter = Função() - quando tiver apenas um parâmetro, não é necessario "parts:[]" -->
-                        <Text xmlns="sap.m" text="{path:'Createdat', formatter:'.date' }" id="text10"/>
+                        <Text xmlns="sap.m" text="{path:'Createdat', formatter:'.objFormatter.date' }" id="text10"/>
 
                       </sap.m:cells>
                     </sap.m:ColumnListItem>

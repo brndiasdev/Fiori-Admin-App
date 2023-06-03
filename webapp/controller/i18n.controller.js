@@ -12,7 +12,6 @@ sap.ui.define(
       },
 
       sendInfo: function () {
-        debugger;
         var oResourceBundle = this.getView().getModel("i18n").getResourceBundle();
 
         var cliente = this.getView().byId("cliente").getValue();

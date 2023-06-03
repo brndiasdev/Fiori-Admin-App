@@ -60,7 +60,7 @@
 
         <m:VBox id="hcVBox2">
           <m:Title id="hcTitle2" class="hcTitle2" text="{i18n>headerStatus}"/>
-          <m:ObjectStatus text="{path:'Status', formatter:'.statusProduto' }" id="hcStatus0" icon="{path:'Status', formatter:'.iconeProduto'}" inverted="true" state="{path:'Status', formatter:'.stateProduto'}"/>
+          <m:ObjectStatus text="{path:'Status', formatter:'.objFormatter.statusProduto' }" id="hcStatus0" icon="{path:'Status', formatter:'.objFormatter.iconeProduto'}" inverted="true" state="{path:'Status', formatter:'.objFormatter.stateProduto'}"/>
         </m:VBox>
 
         <m:VBox id="hcVBox3">
@@ -75,7 +75,7 @@
           </m:HBox>
           <m:HBox id="VHBox1" class="VHBox1">
             <m:Label id="hcLabel2" text="{i18n>headerCreatedOn}" class="hcLabel2"/>
-            <m:Link id="hcLink2" text="{path:'Createdat', formatter:'.date' }" class="hcLink2 sapUiMediumMarginBegin"/>
+            <m:Link id="hcLink2" text="{path:'Createdat', formatter:'.objFormatter.date' }" class="hcLink2 sapUiMediumMarginBegin"/>
           </m:HBox>
           <m:HBox id="VHBox2" class="VHBox2">
             <m:Label id="hcLabel3" text="{i18n>headerChangedBy}" class="hcLabel3"/>
@@ -83,7 +83,7 @@
           </m:HBox>
           <m:HBox id="VHBox3" class="VHBox3">
             <m:Label id="hcLabel4" text="{i18n>headerChangedOn}" class="hcLabel4"/>
-            <m:Link id="hcLink4" text="{path:'Changedat', formatter:'.date' }" class="hcLink4 sapUiSmallMarginBegin"/>
+            <m:Link id="hcLink4" text="{path:'Changedat', formatter:'.objFormatter.date' }" class="hcLink4 sapUiSmallMarginBegin"/>
           </m:HBox>
         </m:VBox>
       </m:HeaderContainer>
@@ -130,13 +130,13 @@
                   <m:Text id="sectionText3" text="{path: 'Weightmeasure', formatter: '.floatNumber'} {path: 'Weightunit'}" />
 
                   <m:Label text="{i18n>sectionWidth}" id="sectionLabel5"/>
-                  <m:Text id="sectionText5" text="{path: 'Width', formatter:'.floatNumber'}" />
+                  <m:Text id="sectionText5" text="{path: 'Width', formatter:'.objFormatter.floatNumber'}" />
 
                   <m:Label text="{i18n>sectionDepth}" id="sectionLabel6"/>
-                  <m:Text id="sectionText6" text="{path: 'Depth', formatter:'.floatNumber'}"/>
+                  <m:Text id="sectionText6" text="{path: 'Depth', formatter:'.objFormatter.floatNumber'}"/>
 
                   <m:Label text="{i18n>sectionHeigth}" id="sectionLabel7"/>
-                  <m:Text id="sectionText7" text="{path: 'Heigth', formatter:'.floatNumber'}" />
+                  <m:Text id="sectionText7" text="{path: 'Heigth', formatter:'.objFormatter.floatNumber'}" />
 
                   <m:Label text="{i18n>sectionDimUnit}" id="sectionLabel8"/>
                   <m:Text id="sectionText8" text="{Dimunit}" />
