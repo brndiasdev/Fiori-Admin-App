@@ -41,7 +41,7 @@ sap.ui.define(
                       tileType: "sap.ushell.ui.tile.StaticTile",
                       properties: {
                         title: "Fiori Report",
-                        targetURL: "#brcomgestaofioriappreport303-display",
+                        targetURL: "#brcomgestaofioriappadmin303-display",
                       },
                     },
                   ],
@@ -54,8 +54,8 @@ sap.ui.define(
           adapter: {
             config: {
               inbounds: {
-                "brcomgestaofioriappreport303-display": {
-                  semanticObject: "brcomgestaofioriappreport303",
+                "brcomgestaofioriappadmin303-display": {
+                  semanticObject: "brcomgestaofioriappadmin303",
                   action: "display",
                   description: "Fiori APP Gestao Report",
                   title: "Fiori Report",

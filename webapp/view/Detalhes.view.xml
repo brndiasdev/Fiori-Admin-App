@@ -103,7 +103,7 @@
 
                 <sap.ui.layout.form:content >
                   <m:Label text="{i18n>sectionCategory}" id="sectionLabel0"/>
-                  <m:Text id="sectionText0" text="{to_cat/Description}" class="sapMObjectNumberMedium" />
+                  <m:Text id="sectionText0" text="{path: 'Category'}" class="sapMObjectNumberMedium" />
 
                   <m:Label text="{i18n>sectionSupplier}" id="sectionLabel1"/>
                   <m:Text id="sectionText1" text="{Supplierid} {Suppliername}" />
@@ -127,7 +127,7 @@
                   <m:Text id="sectionText2" text="{Measureunit}" class="sapMObjectNumberMedium" />
 
                   <m:Label text="{i18n>sectionWeightMeasure}" id="sectionLabel3"/>
-                  <m:Text id="sectionText3" text="{path: 'Weightmeasure', formatter: '.floatNumber'} {path: 'Weightunit'}" />
+                  <m:Text id="sectionText3" text="{path: 'Weightmeasure', formatter: '.objFormatter.floatNumber'} {path: 'Weightunit'}" />
 
                   <m:Label text="{i18n>sectionWidth}" id="sectionLabel5"/>
                   <m:Text id="sectionText5" text="{path: 'Width', formatter:'.objFormatter.floatNumber'}" />
