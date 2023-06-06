@@ -80,6 +80,27 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/Filter", "sap/ui/mode
         oDialog.open();
       });
     },
+    onNovoProduto: function (oEvent) {
+      var oView = this.getView();
+
+      if (!this._Produto) {
+        // se this._CategoriaSearchHelp não existe...
+        this._Produto = Fragment.load({
+          // Importado na função de Origem do Controller - dá load no fragment no ID do oView
+          id: oView.getId(),
+          name: "br.com.gestao.fioriappadmin303.frags.Insert",
+          controller: this,
+        }).then(function (oDialog) {
+          oView.addDependent(oDialog); // oDialog = conteúdo do Fragment.load({oDialog})
+          return oDialog;
+        });
+      }
+
+      this._Produto.then(function (oDialog) {
+        // Abre o Fragment
+        oDialog.open();
+      });
+    },
     onValueHelpSearch: function (oEvent) {
       var sValue = oEvent.getParameter("value"); // captura o valor digitado pelo usuário
 

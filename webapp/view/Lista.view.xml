@@ -1,17 +1,17 @@
-<mvc:View xmlns:core="sap.ui.core"
+<mvc:View xmlns:m="sap.m" xmlns:core="sap.ui.core"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns:html="http://www.w3.org/1999/xhtml"
-  xmlns="sap.m" controllerName="br.com.gestao.fioriappadmin303.controller.Lista" displayBlock="true">
+  xmlns="sap.m" xmlns:s="sap.f.semantic" controllerName="br.com.gestao.fioriappadmin303.controller.Lista" displayBlock="true">
 
   <Shell id="shell">
     <App id="app">
       <pages>
-        <Page id="page" title="{i18n>title}">
+        <Page id="page" title="{i18n>title}"> 
           <content>
             <SemanticPage xmlns="sap.f.semantic" headerPinnable="true" toggleHeaderOnTitleClick="true" preserveHeaderStateOnScroll="false" titleAreaShrinkRatio="1:1.6:1.6" showFooter="false" id="pageList">
-
-              <titleHeading>
-                <m:Title xmlns:m="sap.m" text="{i18n>headingTitle}" id="title0" textAlign="Center" width="100%"/>
+              
+              <titleHeading>                
+                  <m:Title xmlns:m="sap.m" text="{i18n>headingTitle}" id="title0" textAlign="Center" width="100%"/>
               </titleHeading>
 
               <headerContent>
@@ -37,7 +37,9 @@
               </headerContent>
 
               <titleMainAction/>
-              <titleCustomTextActions/>
+              <titleCustomTextActions>
+                <m:Button id="headerButton" text="Novo" icon="sap-icon://add" press="onNovoProduto"/>
+              </titleCustomTextActions>
               <titleCustomIconActions/>
               <footerCustomActions/>
               <titleSnappedContent>
@@ -113,6 +115,7 @@
                   </sap.m:columns>
                 </sap.m:Table>
               </content>
+              
             </SemanticPage>
 
           </content>
