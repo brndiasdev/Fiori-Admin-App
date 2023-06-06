@@ -1,7 +1,7 @@
-.header0{
-    display: flex;
-    background-color: white;
-    justify-content: center;
+.header0 {
+  display: flex;
+  background-color: white;
+  justify-content: center;
 }
 
 .text0 {
@@ -12,43 +12,40 @@
   text-align: center;
 }
 
-
-.indicator0{
-    margin-bottom: 30px;
+.indicator0 {
+  margin-bottom: 30px;
 }
 
-.text1{
-    font-size: 24px;
+.text1 {
+  font-size: 24px;
 }
 
-.text2{
-    font-size: 24px;
+.text2 {
+  font-size: 24px;
 }
 
-.button0{
+.button0 {
   width: 200px; /* Set the desired width */
   height: 500px; /* Set the desired height */
- 
 }
 
-.icon0{
-    margin-bottom: 45px;
-    
+.icon0 {
+  margin-bottom: 45px;
 }
 
-.DynamicHeader{
+.DynamicHeader {
   display: flex;
   justify-content: center;
 }
 
-.flexsnapped{
+.flexsnapped {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
 
-.icon2{
+.icon2 {
   align-items: center;
   margin-right: 20px;
   margin-bottom: 20px;
@@ -98,7 +95,7 @@
 .hcLabel2,
 .hcLabel3,
 .hcLabel4 { */
-  /* flex: 1;
+/* flex: 1;
   text-align: right;
   padding-right: 10px;
 }
@@ -109,4 +106,3 @@
 .hcLink4 {
   flex: 1; */
 /* } */
-
