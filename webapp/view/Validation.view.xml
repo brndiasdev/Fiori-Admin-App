@@ -37,10 +37,11 @@
 
               <!-- Validação Float -->
               <Label text="Validacao Float" width="100%" id="label14" />
-              <Input xmlns="sap.m" valueStateText="Insira um Valor" value="{path: 'MDL_Produto>/Largura', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2, minFractionDigits: 2}, constraints: {minimum: 5, maximum: 100}
-              }" id="input5" />
-
-
+              <Input xmlns="sap.m" valueStateText="Insira um Valor" value="{path: 'MDL_Produto>/Largura', type: 'sap.ui.model.type.Float', 
+                formatOptions: { maxFractionDigits: 2, 
+                  minFractionDigits: 2}, 
+                constraints: {minimum: 5, 
+                  maximum: 100}}" id="input5" />
             </sap.ui.layout.form:content>
           </sap.ui.layout.form:SimpleForm>
         </content>

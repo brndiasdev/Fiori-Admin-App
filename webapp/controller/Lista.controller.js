@@ -1,15 +1,27 @@
-sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/Filter", "sap/ui/model/FilterOperator", "br/com/gestao/fioriappadmin303/util/Formatter", "sap/ui/core/Fragment"], function (BaseController, Filter, FilterOperator, Formatter, Fragment) {
+sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/Filter", "sap/ui/model/FilterOperator", "br/com/gestao/fioriappadmin303/util/Formatter", "sap/ui/core/Fragment", "sap/ui/core/ValueState", "sap/ui/model/json/JSONModel", "br/com/gestao/fioriappadmin303/util/Validator"], function (BaseController, Filter, FilterOperator, Formatter, Fragment, ValueState, JSONModel, Validator) {
   "use strict";
 
   return BaseController.extend("br.com.gestao.fioriappadmin303.controller.Lista", {
     objFormatter: Formatter,
 
     onInit: function () {
+      sap.ui.getCore().attachValidationError(function (oEvent) {
+        oEvent.getParameter("element").setValueState(ValueState.Error);
+      });
+      sap.ui.getCore().attachValidationSuccess(function (oEvent) {
+        // o value state só funciona se o objeto possuir uma constraint dentro do XML
+        oEvent.getParameter("element").setValueState(ValueState.Success);
+      });
       // Força a inicialização com dados em PT-BR
-      var oConfiguration = sap.ui.getCore().getConfiguration();
-      oConfiguration.setLanguage("pt-BR");
+      // var oConfiguration = sap.ui.getCore().getConfiguration();
+      // oConfiguration.setLanguage("pt-BR");
     },
 
+    criarModel: function () {
+      // Model Produto
+      var oModel = new JSONModel();
+      this.getView().setModel(oModel, "MDL_Produto");
+    },
     onSearchName: function () {
       var idQuery = this.getView().byId("field0"); // Linka a variável idQuery ao elemento de ID field0
       var nameQuery = this.getView().byId("field1"); // Linka a variável nameQuery ao elemento de ID field1
@@ -81,6 +93,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/Filter", "sap/ui/mode
       });
     },
     onNovoProduto: function (oEvent) {
+      //Criar o Model Produto
+      this.criarModel();
       var oView = this.getView();
 
       if (!this._Produto) {
@@ -147,6 +161,18 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/Filter", "sap/ui/mode
       if (oInput) {
         oInput.setValue("");
       }
+    },
+    pressValidation: function () {
+      // ↓ Cria o objeto Validator ↓
+      var validator = new Validator();
+      // ↓ Chama a validação ↓
+      if (validator.validate(this.byId("dialog0"))) {
+        this.onInsert();
+      }
+    },
+    onInsert: function () {
+      var oModel = this.getView().getModel("MDL_Produto").getData();
+      // var objNovo = oModel.getData();
     },
   });
 });
