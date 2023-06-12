@@ -6,7 +6,7 @@
         <sap.ui.layout.form:content>
           <!-- Propriedade Name -->
           <Label id="lblName" text="{i18n>sfNome}" required="true" />
-          <Input id="sfInput0" width="65%" valueStateText="{i18n>sfNomeStateText}" maxLength="40" value="{path: 'MDL_Produto>/Name', type: 'sap.ui.model.type.String', constraints: {search: '^[A-Za-z ]+$', minLength: 3, maxLength: 50}}" />
+          <Input id="sfInput0" width="65%" valueStateText="{i18n>sfNomeStateText}" maxLength="50" value="{path: 'MDL_Produto>/Name', type: 'sap.ui.model.type.String', constraints: {search: '^[A-Za-z 0-9]+$', minLength: 3}}" />
 
           <!-- Propriedade Description -->
           <Label id="lblDescr" text="{i18n>sfDescription}" />
@@ -65,7 +65,7 @@
 
           <!-- Propriedade Weight Measure -->
           <Label id="lblWeightMeasure" text="{i18n>sfWeightmeasure}" required="true" />
-          <Input id="inputTaxAmount" width="65%" valueStateText="{i18n>sfWeightmeasure}" type="Number" value="{path: 'MDL_Produto>/Weightmeasure', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2, minFractionDigits: 2}, constraints: {minimum: 1, maximum: 6}} }" />
+          <Input id="inputTaxAmount" width="65%" valueStateText="{i18n>sfWeightmeasure}" type="Number" value="{path: 'MDL_Produto>/Weightmeasure', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2, minFractionDigits: 2}, constraints: {minimum: 1, maximum: 6}}" />
 
           <!-- Propriedade Weight Unit -->
           <Label id="lblWeightUnit" text="{i18n>sfWeightunit}" required="true" />
@@ -96,7 +96,7 @@
     </content>
     <buttons>
       <Button xmlns="sap.m" text="{i18n>btnAdd}" id="button" press="pressValidation" />
-      <Button xmlns="sap.m" text="{i18n>btnCancel}" id="button01" />
+      <Button xmlns="sap.m" text="{i18n>btnCancel}" id="button01" press="closeDialog" />
     </buttons>
   </Dialog>
 </core:FragmentDefinition>

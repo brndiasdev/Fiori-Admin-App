@@ -1,4 +1,4 @@
-sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/Filter", "sap/ui/model/FilterOperator", "br/com/gestao/fioriappadmin303/util/Formatter", "sap/ui/core/Fragment", "sap/ui/core/ValueState", "sap/ui/model/json/JSONModel", "br/com/gestao/fioriappadmin303/util/Validator"], function (BaseController, Filter, FilterOperator, Formatter, Fragment, ValueState, JSONModel, Validator) {
+sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/Filter", "sap/ui/model/FilterOperator", "br/com/gestao/fioriappadmin303/util/Formatter", "sap/ui/core/Fragment", "sap/ui/core/ValueState", "sap/ui/model/json/JSONModel", "br/com/gestao/fioriappadmin303/util/Validator", "sap/m/MessageBox", "sap/m/BusyDialog", "sap/ui/model/odata/ODataModel", "sap/m/MessageToast"], function (BaseController, Filter, FilterOperator, Formatter, Fragment, ValueState, JSONModel, Validator, MessageBox, BusyDialog, ODataModel, MessageToast) {
   "use strict";
 
   return BaseController.extend("br.com.gestao.fioriappadmin303.controller.Lista", {
@@ -171,8 +171,87 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/Filter", "sap/ui/mode
       }
     },
     onInsert: function () {
+      // 1 - Cria uma referência do objeto Model que está recebendo as informações do fragment
       var oModel = this.getView().getModel("MDL_Produto").getData();
       // var objNovo = oModel.getData();
+
+      // 2 - Manipular Propriedades
+      oModel.Productid = this.geraID();
+      oModel.Price = oModel.Price[0].toString();
+      oModel.Weightmeasure = oModel.Weightmeasure.toString();
+      oModel.Width = oModel.Width.toString();
+      oModel.Depth = oModel.Depth.toString();
+      oModel.Height = oModel.Height.toString();
+      oModel.Createdat = this.objFormatter.dateSAP(oModel.Createdat);
+      oModel.Currencycode = "BRL";
+      oModel.Userupdate = "";
+
+      // 3 - Criando referências do Arquivo i18n
+      var bundle = this.getView().getModel("i18n").getResourceBundle();
+      var t = this; // variável contexto da View
+
+      // 4 - Criar o Objeto Model referência do model Default (Odata)
+      var oModelProduto = t.getView().getModel();
+      MessageBox.confirm(
+        bundle.getText("insertDialogMessage"), // Pergunta do Processo dentro do i18n
+        function (action) {
+          //função de disparo do insert
+          debugger;
+          if (MessageBox.Action.OK === action) {
+            // Verifica se o usuário confirmou a operação
+            t._oBusyDialog = new BusyDialog({
+              text: bundle.getText("Sending"),
+            });
+            t._oBusyDialog.open();
+            setTimeout(function () {
+              //Realizar a chamada para o SAP
+              var oModelSend = new ODataModel(oModelProduto.sServiceUrl, true);
+              oModelSend.create(
+                "Produtos",
+                oModel,
+                null,
+                function (d, r) {
+                  // Função de Sucesso
+                  if (r.statusCode === 201) {
+                    // 201 = sucesso na criação
+                    MessageToast.show(bundle.getText("insertDialogSuccess", [oModel.Productid]), {
+                      duration: 5000,
+                    });
+                    t.closeDialog(); // Fecha o Dialog
+                    t.getView().getModel().refresh(); // Refresh no Model Default
+                    t._oBusyDialog.close();
+                  }
+                },
+                function (e) {
+                  // Função de Erro
+                  //Fecha o busyDialog
+                  t._oBusyDialog.close();
+                  var oReturn = JSON.parse(e.response.body);
+                  MessageToast.show(oReturn.error.message.value, {
+                    duration: 4000,
+                  });
+                }
+              );
+            }, 2000);
+          }
+        },
+        bundle.getText("insertDialogTitle") // Exibe o title da popup
+      );
+    },
+
+    // Geramos um ID de Produto Dinâmico
+    geraID: function () {
+      return "xxxxxxxxxx".replace(/[xy]/g, function (c) {
+        var r = (Math.random() * 16) | 0,
+          v = c == "x" ? r : (r & 0x3) | 0x8;
+        return v.toString(16).toUpperCase();
+      });
+    },
+    // Fechamento do Dialog
+    closeDialog: function () {
+      this._Produto.then(function (oDialog) {
+        oDialog.close();
+      });
     },
   });
 });

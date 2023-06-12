@@ -29,6 +29,19 @@ sap.ui.define(["sap/ui/core/format/NumberFormat"], function (NumberFormat) {
       }
     },
 
+    dateSAP: function (value) {
+      if (value) {
+        var dateParts = value.split("/");
+        var dateObject = new Date(dateParts[2], dateParts[1] - 1, dateParts[0]);
+        var oDateFormat = sap.ui.core.format.DateFormat.getDateInstance({
+          pattern: "yyyy-MM-ddTHH:mm:ss",
+        });
+        return oDateFormat.format(new Date(dateObject));
+      } else {
+        return value;
+      }
+    },
+
     statusProduto: function (value) {
       var oBundle = this.getView().getModel("i18n").getResourceBundle();
 
