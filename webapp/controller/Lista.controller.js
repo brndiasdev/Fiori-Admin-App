@@ -94,7 +94,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/Filter", "sap/ui/mode
     },
     onNovoProduto: function (oEvent) {
       //Criar o Model Produto
-      this.criarModel();
+      var t = this;
+      t.criarModel();
       var oView = this.getView();
 
       if (!this._Produto) {
@@ -113,6 +114,74 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/Filter", "sap/ui/mode
       this._Produto.then(function (oDialog) {
         // Abre o Fragment
         oDialog.open();
+
+        //Chamada da função para Pegar os usuários do Metadata
+        t.onGetUsuarios();
+      });
+    },
+    // Capturar a coleção de usuários de um novo serviço ODATA - Z_USERS_303 - Exatamente como fizemos com o MessageToast
+    onGetUsuarios: function () {
+      var t = this;
+      var strEntity = "/sap/opu/odata/sap/ZSB_USERS_303";
+
+      var oModelSend = new ODataModel(strEntity, true);
+      oModelSend.read("/Usuarios", {
+        // Le dentro do OData a entidade Usuarios criada através da Z_USERS_303
+        success: function (oData, results) {
+          if (results.statusCode === 200) {
+            var oModelUsers = new JSONModel();
+            oModelUsers.setData(oData.results);
+            t.getView().setModel(oModelUsers, "MDL_Users");
+          }
+        },
+        error: function (e) {
+          var oReturn = JSON.parse(e.response.body);
+          MessageToast.show(oReturn.error.message.value, {
+            duration: 4000,
+          });
+        },
+      });
+    },
+    // Aplicar um filtro na Entidade Fornecedores para que Filtre o meio da String
+    onSuggest: function (event) {
+      var sText = event.getParameter("suggestValue");
+      var aFilters = { filters: [], and: true };
+
+      if (sText) {
+        aFilters.filters.push(new Filter("Lifnr", FilterOperator.Contains, sText));
+        aFilters.filters.push(new Filter("Name1", FilterOperator.Contains, sText));
+      }
+      event.getSource().getBinding("suggestionItems").filter(aFilters);
+    },
+    //Localizar um fornecedor baseado no input do usuário
+    getSupplier: function (event) {
+      this._oInput = event.getSource().getId();
+      var oValue = event.getSource().getValue();
+
+      var sElement = "/Fornecedores('" + oValue + "')"; // URL DE CHAMADA DE UM FORNECEDOR
+
+      var oModel = this.getView().getModel(); // Cria o objeto Model Default do Projeto
+
+      var oModelProduto = this.getView().getModel("MDL_Produto"); // Model onde o usuário realiza o preenchimento das informações de Produto
+
+      // Realizar a chamada para a SAP
+      var oModelSend = new ODataModel(oModel.sServiceUrl, true);
+      oModelSend.read(sElement, {
+        success: function (oData, results) {
+          if (results.statusCode === 200) {
+            oModelProduto.setProperty("/Supplierid", oData.Lifnr);
+            oModelProduto.setProperty("/Suppliername", oData.Name1);
+          }
+        },
+        error: function (e) {
+          oModelProduto.setProperty("/Supplierid", "");
+          oModelProduto.setProperty("/Suppliername", "");
+
+          var oReturn = JSON.parse(e.response.body);
+          MessageToast.show(oReturn.error.message.value, {
+            duration: 4000,
+          });
+        },
       });
     },
     onValueHelpSearch: function (oEvent) {
