@@ -7,7 +7,7 @@
       <ObjectPageDynamicHeaderTitle id="DynamicHeader" class="DynamicHeader">
         <breadcrumbs>
           <m:Breadcrumbs id="breadcrumbs1" class="breadcrumbs1" currentLocationText="{Name} - {Productid}">
-            <m:Link id="bcLink1" text="Produtos" class="bcLink1" press="history.back()" />
+            <m:Link id="bcLink1" text="Produtos" class="bcLink1" press=".onNavBack" />
           </m:Breadcrumbs>
         </breadcrumbs>
 
@@ -33,7 +33,11 @@
         </expandedContent>
 
         <actions>
-          <m:Button id="actionButton" text="{i18n>buttonBack}" type="Emphasized" press="history.back()" icon="sap-icon://nav-back" />
+          <m:Button id="actionButton" text="{i18n>backButton}" type="Emphasized" press=".onNavBack" icon="sap-icon://nav-back" />
+          <m:Button id="editButton" text="{i18n>editButton}" type="Emphasized" press="handleEdit" icon="sap-icon://edit" />
+          <m:Button id="deleteButton" text="{i18n>deleteButton}" type="Emphasized" press="handleDelete" icon="sap-icon://delete" />
+          <m:Button id="saveButton" text="{i18n>saveButton}" type="Emphasized" press="handleSave" icon="sap-icon://save" />
+          <m:Button id="cancelButton" text="{i18n>cancelButton}" type="Emphasized" press="handleCancel" icon="sap-icon://decline" />
         </actions>
       </ObjectPageDynamicHeaderTitle>
     </headerTitle>
@@ -93,61 +97,38 @@
 
     <!-- SECTIONS -->
     <sections>
-      <ObjectPageSection titleUppercase="false" id="sectionsTitle0" title="{i18n>sectionTitle}">
+      <ObjectPageSection titleUppercase="false" id="objPage0" title="{i18n>sectionTitle}" importance="Medium">
         <subSections>
           <ObjectPageSubSection id="sectionsTitle1" title="">
+            <blocks>
+              <m:VBox id="vboxBasicInfo">
 
-
-            <sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" backgroundDesign="Transparent"
-              xmlns:sap.ui.core="sap.ui.core" id="form0" editable="false" layout="ColumnLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsM="2" columnsL="3" columnsXL="4" singleContainerFullSize="false">
-
-              <sap.ui.layout.form:content >
-                <m:Label text="{i18n>sectionCategory}" id="sectionLabel0" />
-                <m:Text id="sectionText0" text="{path: 'to_cat/Description'}" class="sapMObjectNumberMedium" />
-
-                <m:Label text="{i18n>sectionSupplier}" id="sectionLabel1" />
-                <m:Text id="sectionText1" text="{Supplierid} {Suppliername}" />
-              </sap.ui.layout.form:content>
-
-            </sap.ui.layout.form:SimpleForm>
-
+              </m:VBox>
+            </blocks>
           </ObjectPageSubSection>
         </subSections>
       </ObjectPageSection>
 
-      <ObjectPageSection titleUppercase="false" id="objpage0" title="{i18n>sectionTitle1}">
+      <ObjectPageSection titleUppercase="false" id="objPage1" title="{i18n>sectionTitle1}" importance="Medium">
         <subSections>
           <ObjectPageSubSection id="employmentSectionSS1" titleUppercase="false">
             <blocks>
-              <sap.ui.layout.form:SimpleForm xmlns:sap.ui.layout.form="sap.ui.layout.form" backgroundDesign="Transparent"
-                xmlns:sap.ui.core="sap.ui.core" id="form1" editable="false" layout="ColumnLayout" labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsM="2" columnsL="3" columnsXL="4" singleContainerFullSize="false">
+              <m:VBox id="vboxTechInfo">
 
-                <sap.ui.layout.form:content >
-                  <m:Label text="{i18n>sectionMeasureUnit}" id="sectionLabel2" />
-                  <m:Text id="sectionText2" text="{Measureunit}" class="sapMObjectNumberMedium" />
-
-                  <m:Label text="{i18n>sectionWeightMeasure}" id="sectionLabel3" />
-                  <m:Text id="sectionText3" text="{path: 'Weightmeasure', formatter: '.objFormatter.floatNumber'} {path: 'Weightunit'}" />
-
-                  <m:Label text="{i18n>sectionWidth}" id="sectionLabel5" />
-                  <m:Text id="sectionText5" text="{path: 'Width', formatter:'.objFormatter.floatNumber'}" />
-
-                  <m:Label text="{i18n>sectionDepth}" id="sectionLabel6" />
-                  <m:Text id="sectionText6" text="{path: 'Depth', formatter:'.objFormatter.floatNumber'}" />
-
-                  <m:Label text="{i18n>sectionHeight}" id="sectionLabel7" />
-                  <m:Text id="sectionText7" text="{path: 'Height', formatter:'.objFormatter.floatNumber'}" />
-
-                  <m:Label text="{i18n>sectionDimUnit}" id="sectionLabel8" />
-                  <m:Text id="sectionText8" text="{Dimunit}" />
-                </sap.ui.layout.form:content>
-
-              </sap.ui.layout.form:SimpleForm>
+              </m:VBox>
             </blocks>
           </ObjectPageSubSection>
+        </subSections>
+      </ObjectPageSection>
+      <ObjectPageSection titleUppercase="false" visible="false" id="objPage2" title="{i18n>sectionUpdateProduct}">
+        <subSections>
+          <ObjectPageSubSection id="employmentSectionSS2" titleUppercase="false">
+            <blocks>
+              <m:VBox id="vboxChangeProduct">
 
-
-
+              </m:VBox>
+            </blocks>
+          </ObjectPageSubSection>
         </subSections>
       </ObjectPageSection>
     </sections>
