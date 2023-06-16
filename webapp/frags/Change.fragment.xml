@@ -15,11 +15,11 @@
 
         <!-- Propriedade Category -->
         <Label id="lblCategory" text="{i18n>sfCategory}" required="true" />
-        <Input id="sfInput1" showValueHelp="true" valueHelpRequest=".onCategoria" valueHelpOnly="true" width="65%" value="{ path : 'MDL_Produto>/Category',  type : 'sap.ui.model.type.String', constraints : {search: '^[a-zA-Z]+[\\s]?[a-zA-Z]+$', minLength: 1}}" />
+        <Input id="sfInput1" showValueHelp="true" valueHelpRequest=".onCategoria" valueHelpOnly="false" width="65%" value="{ path : 'MDL_Produto>/Category',  type : 'sap.ui.model.type.String', constraints : {search: '^[a-zA-Z]+[\\s]?[a-zA-Z]+$', minLength: 1}}" />
 
         <!-- Propriedade Price -->
         <Label id="lblPrice" text="{i18n>sfPrice}" required="true" />
-        <Input xmlns="sap.m" valueStateText="Insira um Valor" width="65%" value="{path: 'MDL_Produto>/Price', type: 'sap.ui.model.type.Currency', constraints: {minimum: 5, maximum: 10000}}" id="input3" />
+        <Input xmlns="sap.m" valueStateText="Insira um Valor" width="65%" value="{parts:['MDL_Produto>/Price', 'MDL_Produto>/Currecycode'], type: 'sap.ui.model.type.Currency', constraints: {minimum: 5, maximum: 10000}}" id="input3" />
 
         <!-- Propriedade Status -->
         <Label id="lblStatus" text="{i18n>sfStatus}" required="true" />
@@ -37,20 +37,20 @@
 
         <!-- Propriedade Supplier -->
         <Label id="lblSupplier" text="{i18n>sfSupplier}" required="true" />
-        <Input id="_IDGenInput55" type="Text" showSuggestion="true" startSuggestion="1" autocomplete="false" suggest="onSuggest" suggestionItems="{/Fornecedores}" width="65%" change=".getSupplier" description="{MDL_Produto>/Suppliername}" valueStateText="{i18n>sfSupplierStateText}" maxLength="10" value="{ path : 'MDL_Produto>/Supplierid', type : 'sap.ui.model.type.String', constraints: { search: '^[A-Za-z0-9 .\\-]*$', minLength: 3,  maxLength: 15 }}">
+        <Input id="_IDGenInput55" type="Text" showSuggestion="true" autocomplete="false" suggest="onSuggest" suggestionItems="{/Fornecedores}" width="65%" change=".getSupplier" description="{MDL_Produto>/Suppliername}" valueStateText="{i18n>sfSupplierStateText}" value="{ path : 'MDL_Produto>/Supplierid', type : 'sap.ui.model.type.String', constraints: { search: '^[A-Za-z0-9 .\\-]*$', minLength: 3,  maxLength: 30 }}">
           <!-- parts: [{path:'Price'}, {path:'Currencycode'} -->
           <suggestionItems >
             <core:ListItem id="suggestionItem0" text="{Lifnr}" additionalText="{Name1}"></core:ListItem>
           </suggestionItems>
         </Input>
 
-        <!-- Propriedade Data Criacao -->
+        <!-- Propriedade Data Criacao
         <Label id="lblDtCriacao" text="{i18n>sfCreatedon}" required="true" />
-        <DatePicker valueStateText="{i18n>sfCreatedatStateText}" id="inputData" value="{ path: 'MDL_Produto>/Createdat', type : 'sap.ui.model.type.Date', formatOptions : { source: { pattern: 'dd/MM/yyyy' }, pattern: 'dd/MM/yyyy' },  constraints : {minimum : '01/01/2022' } }" required="true" width="65%" />
+        <DatePicker valueStateText="{i18n>sfCreatedatStateText}" id="inputData" value="{ path: 'MDL_Produto>/Createdat', type : 'sap.ui.model.type.Date', formatOptions : { source: { pattern: 'dd/MM/yyyy' }, pattern: 'dd/MM/yyyy' },  constraints : {minimum : '01/01/2022' } }" required="true" width="65%" /> -->
 
         <!-- Propriedade Criado por -->
-        <Label id="lblCreatedby" text="{i18n>sfCreatedby}" required="true" />
-        <Select id="selChangedby" width="65%" selectedKey="{MDL_Produto>/Usercreate}" items="{MDL_Users>/}">
+        <Label id="lblChangedby" text="{i18n>sfChangedby}" required="true" />
+        <Select id="selChangedby" width="65%" selectedKey="{MDL_Produto>/Userupdate}" items="{MDL_Users>/}">
           <items>
             <core:ListItem id="_IDGenListItem5" key="{MDL_Users>Userid}" text="{MDL_Users>Firstname} {MDL_Users&gt;Lastname}" />
           </items>
