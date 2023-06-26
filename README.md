@@ -17,26 +17,42 @@
 |**Enable TypeScript**<br>False|
 |**Add Eslint configuration**<br>False|
 
-## fiori_app_report_303
+## Features
 
-Fiori APP Gestao Report
+- **User Management**: Easily manage user roles and authorizations for Fiori apps. Add, modify, or remove user roles, assign specific authorizations, and control access to different app functionalities.
 
-### Starting the generated app
+- **App Configuration**: Configure and customize Fiori apps to meet specific business requirements. Modify app layouts, add or remove app features, and adjust settings based on user preferences.
 
--   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  In order to launch the generated app, simply run the following from the generated app root folder:
+- **System Settings**: Access and modify system-level settings for Fiori apps. Control general app behavior, define default settings, and manage app dependencies.
 
-```
-    npm start
-```
+## Getting Started
 
-- It is also possible to run the application using mock data that reflects the OData Service URL supplied during application generation.  In order to run the application with Mock Data, run the following from the generated app root folder:
+To get started with Fiori App Admin, follow these steps:
 
-```
-    npm run start-mock
-```
+1. Clone the repository: `git clone https://github.com/brndiasdev/FioriApp-Admin.git`
+2. Navigate to the `webapp` directory.
+3. Install the necessary dependencies by running `npm install`.
+4. Start the application by running `npm start`.
 
-#### Pre-requisites:
+## Usage
 
-1. Active NodeJS LTS (Long Term Support) version and associated supported NPM version.  (See https://nodejs.org)
+Fiori App Admin provides the following functionality for testing and managing products:
 
+1. **Add and Remove Products**: You can add and remove products to test the layout and functionality of the application. Use the "Add Product" button to add a new product, and the "Remove" button to delete a product from the list.
 
+2. **Product Detailed Page**: Clicking on a product will take you to a detailed page that displays specific information about the product. This information is added when you initially add the product. The detailed page provides a comprehensive view of the product's details.
+
+3. **Edit and Remove Products**: In the product detailed page, you have the option to edit or remove the product. Use the "Edit" button to modify the product information, and the "Remove" button to delete the product from the system.
+
+Feel free to explore and interact with the different features to manage and test the product functionality.
+
+## Multilingual Support
+
+Fiori App Admin provides support for multiple languages through i18n (internationalization). The following languages are currently supported:
+
+- English (en)
+- French (fr)
+- Swiss German (de-CH)
+- Brazilian Portuguese (pt-BR)
+
+The app automatically detects the user's browser language preferences and displays the interface in the corresponding language if available. Users can also manually switch between languages using the language selector provided in the app.
