@@ -14,7 +14,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/model/Filter", "sap/ui/mode
       });
       // Força a inicialização com dados em PT-BR
       // var oConfiguration = sap.ui.getCore().getConfiguration();
-      // oConfiguration.setLanguage(navigator.language);
+      // oConfiguration.setLanguage("de-CH");
     },
 
     criarModel: function () {
