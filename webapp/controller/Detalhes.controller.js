@@ -84,14 +84,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller", "sap/ui/core/format/NumberFormat", 
       var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 
       if (!oElementBinding.getBoundContext()) {
-        // se não existir o registro e não estamos na operação de delete, redireciona para o ObjectNotFound
         if (!this._bDelete) {
           oRouter.getTargets().display("objectNotFound"); // Pega as targets dentro do manifest.json e mostra a view correspondente a target ObjectNotFound
           return;
         }
-        // SE não exister um elemento (registro) válido eu farei uma ação que é redirecionar para uma nova VIEW
+        
       } else {
-        // Se Não existir, clonamos o registro atual
+        
         this._oProduto = Object.assign({}, oElementBinding.getBoundContext().getObject());
       }
     },
